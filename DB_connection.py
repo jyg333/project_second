@@ -9,7 +9,7 @@ pass_word = 'hidden'
 db_name = 'database-1'
 
 db = pymysql.connect(host=host_name,port=3306,user= user_name,passwd=pass_word)
-# db = pymysql.connect('database-1.clq1g0g3exq8.ap-northeast-2.rds.amazonaws.com','seamus','gbdlsja1','database-1')
+# db = pymysql.connect('database-1.clq1g0g3exq8.ap-northeast-2.rds.amazonaws.com','seamus',passwd=pass_word,'database-1')
 
 cursor = db.cursor()
 cursor.execute("select version()")
