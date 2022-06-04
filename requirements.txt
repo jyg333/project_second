@@ -1,0 +1,9 @@
+asgiref==3.3.2
+Django==3.2.5
+pytz==2019.3
+sqlparse==0.3.1
+uwsgi
+PyMySQL==1.0.2
+pathlib
+djangorestframework==3.13.1
+jinja2==3.0.1

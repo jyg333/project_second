@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+var endpoint = 'api/chart/data/'
+
+$.ajax({
+    method:"GET",
+    url: endpoint,
+    success : function(data){
+        date_data = data.date
+        price_data = data.price
+        pos_data = data.pos
+        nega_data = data.nega
+        neu_data = data.neu
+
+        setChart()
+        setChartTwo()
+        },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+function setChart() {
+    const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart (ctx, {
+            type: 'line',
+            data: {
+                labels: date_data,
+                datasets: [
+                    {
+                    label: 'price',
+                    fill: false,// 'line' type
+                    tension: 1,
+                    data: price_data,
+                    backgroundColor: ['orange'],
+                    borderColor: ['orange'],
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min:0,max : 100000,
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        }
+                    }
+                }
+        });
+}
+
+function setChartTwo() {
+    const ctx = document.getElementById('myChartTwo').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: date_data,
+            datasets: [
+                    {
+                    label: 'pos',
+                    // yAxisID: 'B',
+                    data: pos_data,
+                    backgroundColor: ['red'],
+                    borderColor: ['red'],
+                    borderWidth: 1
+                    },
+                    {
+                    label: 'nega',
+                    data: nega_data,
+                    backgroundColor: ['blue'],
+                    borderColor: ['blue'],
+                    borderWidth: 1
+                    },
+                    {
+                    label: 'neu',
+                    data: neu_data,
+                    backgroundColor: ['green'],
+                    borderColor: ['green'],
+                    borderWidth: 1
+                    }
+                ]
+            },
+        options: {
+            scales: {
+                y: {min:0,
+                    max:10}
+                    }
+                }
+        });
+}
+
+
+// {% endblock %}
+</script>
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-6' url-endpoint ='{% url "api-data" %}' >
+
+        <h1>Today Price</h1>
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+    </div>
+    <div class='col-sm-6' url-endpoint ='{% url "api-data" %}' >
+
+        <h1>Positive/Negative/Neutral News</h1>
+        <canvas id="myChartTwo" width="400" height="400"></canvas>
+
+    </div>
+</div>
+
+{% endblock content %}
