@@ -97,6 +97,24 @@ function setChartTwo() {
 </script>
 
 {% block content %}
+<input type="checkbox" id="menu_button">
+    <label for="menu_button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="side_bar">
+        <ol class="menu_list">
+            <ol><a href="http://127.0.0.1:8000/api/chart/data/" id="menu01">Naver</a></ol>
+            <br>
+            <ol><a href="" id="menu02">Samsung</a></ol>
+            <br>
+            <ol><a href="" id="menu03">LGEngergy Solution</a></ol>
+            <br>
+            <ol><a href="" id="menu04">KaKao</a></ol>
+        </ol>
+
+    </div>
 
 <div class='row'>
     <div class='col-sm-6' url-endpoint ='{% url "api-data" %}' >
