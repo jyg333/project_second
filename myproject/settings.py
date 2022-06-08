@@ -95,9 +95,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'stock_anal',
-        'USER': 'seamus',
-        'PASSWORD': 'gbdlsja1',
-        'HOST': 'database-1.clq1g0g3exq8.ap-northeast-2.rds.amazonaws.com',
+        'USER': 'hidden',
+        'PASSWORD': 'hidden',
+        'HOST': 'hidden',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
