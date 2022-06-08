@@ -2,17 +2,17 @@
 
 <script>
 {% block jquery %}
-var endpoint = 'api/chart/data/'
+var endpoint = '/api/chart/data/'
 
 $.ajax({
     method:"GET",
     url: endpoint,
     success : function(data){
-        date_data = data.date
-        price_data = data.price
-        pos_data = data.pos
-        nega_data = data.nega
-        neu_data = data.neu
+        date_data = data.kakao_date
+        price_data = data.kakao_price
+        pos_data = data.kakao_pos
+        nega_data = data.kakao_nega
+        neu_data = data.kakao_neu
 
         setChart()
         setChartTwo()
@@ -42,7 +42,8 @@ function setChart() {
             options: {
                 scales: {
                     y: {
-                        min:0,max : 100000,
+                        min:70000,max : 100000,
+                        ticks:{stepSize: 10000},
                         type: 'linear',
                         display: true,
                         position: 'left',
@@ -105,13 +106,13 @@ function setChartTwo() {
     </label>
     <div class="side_bar">
         <ol class="menu_list">
-            <ol><a href="http://127.0.0.1:8000/api/chart/data/" id="menu01">Naver</a></ol>
+            <ol><a href="http://127.0.0.1:8000/stockofnaver" id="menu01">Naver</a></ol>
             <br>
-            <ol><a href="" id="menu02">Samsung</a></ol>
+            <ol><a href="http://127.0.0.1:8000/" id="menu02">Samsung</a></ol>
             <br>
-            <ol><a href="" id="menu03">LGEngergy Solution</a></ol>
+            <ol><a href="http://127.0.0.1:8000/stockoflg" id="menu03">LGEngergy Solution</a></ol>
             <br>
-            <ol><a href="" id="menu04">KaKao</a></ol>
+            <ol><a href="http://127.0.0.1:8000/stockofkakao" id="menu04">KaKao</a></ol>
         </ol>
 
     </div>
@@ -119,13 +120,13 @@ function setChartTwo() {
 <div class='row'>
     <div class='col-sm-6' url-endpoint ='{% url "api-data" %}' >
 
-        <h1>Today Price</h1>
+        <h1>Daily Price of Kakao</h1>
         <canvas id="myChart" width="400" height="400"></canvas>
 
     </div>
     <div class='col-sm-6' url-endpoint ='{% url "api-data" %}' >
 
-        <h1>Positive/Negative/Neutral News</h1>
+        <h1>Positive-Negative-Neutral News</h1>
         <canvas id="myChartTwo" width="400" height="400"></canvas>
 
     </div>
